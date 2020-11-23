@@ -2,11 +2,10 @@ version: "3.8"
 
 services:
   redis:
-    image: "redis"
+    image: "redis:6.0.9-buster"
   bot:
     build: .
-    environment:
-      - PYTHONUNBUFFERED=1
-      - DISCORD_ACCESS_TOKEN=${DISCORD_ACCESS_TOKEN}
+    env_file:
+      - .env
     depends_on:
       - redis

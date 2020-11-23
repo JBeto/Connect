@@ -1,3 +1,10 @@
+# VSCode settings
+.vscode/
+
+# Environment files
+.envrc
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  redis:
+    image: "redis"
+  bot:
+    build: .
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DISCORD_ACCESS_TOKEN=${DISCORD_ACCESS_TOKEN}
+    depends_on:
+      - redis

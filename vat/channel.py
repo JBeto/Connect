@@ -1,5 +1,8 @@
 import discord
 import asyncio
+import logging
+
+logger = logging.getLogger(__name__)
 
 async def _create_basic_text_role(name, guild):
     # Set discord permissions explictly instead of using bitmask directly
@@ -42,15 +45,20 @@ class VoiceAndTextChannel:
         await message.pin()
 
         # Return constructed voice and text channel
+        logger.info('Created voice-n-text channel w/ voice_id: {}, role_id: {}, text_id: {}.'
+            .format(voice_channel.id, role.id, text_channel.id))
         return VoiceAndTextChannel(voice_channel, role, text_channel)
 
     async def add_member(self, member):
+        logger.info('Adding member (id: {}) to voice-n-text channel w/ voice_id: {}.'.format(member.id, self.voice_id))
         await member.add_roles(self._role)
 
     async def remove_member(self, member):
+        logger.info('Removing member (id: {}) to voice-n-text channel w/ voice_id: {}.'.format(member.id, self.voice_id))
         await member.remove_roles(self._role)
 
     async def delete(self):
+        logger.info('Deleting voice-n-text channel w/ voice_id: {}.'.format(self.voice_id))
         await self._role.delete()
         await self._text_channel.delete()
 

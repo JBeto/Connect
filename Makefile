@@ -7,7 +7,7 @@ run:
 	@sudo docker-compose up
 
 run-prod:
-	@sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+	@sudo docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d
 
 clean:
 	@sudo docker-compose down
